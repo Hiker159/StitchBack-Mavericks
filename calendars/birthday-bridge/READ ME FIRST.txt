@@ -1,0 +1,50 @@
+BIRTHDAY BRIDGE TEST 06 — VCARD IMPORT
+
+INSTALL AND FIRST TEST
+1. Replace only Birthdays inside the existing restored-apps-preview-01 folder.
+   Do not move or replace Contacts, Calendar, or the login helper.
+2. In restored Mountain Lion Contacts, create a disposable Birthday Test contact
+   with an October 15 birthday. Finish editing. Select just this contact.
+3. Use File > Export > Export vCard. Save as Contacts.vcf inside Birthdays.
+   Use vCard 3.0 (Contacts Preferences > vCard if needed). Export a vCard, not
+   a Contacts archive. Keep this file private: it can contain other contact data.
+4. Open restored Calendar with Open Calendar.command and leave it open.
+   Contacts need not remain open for this version.
+5. Run Refresh Birthdays.command. Look for Contacts Birthdays in Calendar and
+   Birthday Test's Birthday on October 15, recurring in following years.
+6. Send the generated Birthday-diagnostics ZIP and your observations. Do not
+   send Contacts.vcf. If an error occurs, stop and send the ZIP.
+
+AFTER THE FIRST SUCCESSFUL RUN
+Refresh again with the same file: there should be no duplicate.
+Rename the test contact/change its birthday; export again, replacing
+Contacts.vcf, then refresh. The generated title/date should update.
+Clear the birthday in Contacts; export that contact again and refresh.
+Its generated birthday should disappear. Ordinary calendar events stay intact.
+
+EXPORT RULES
+The export is a snapshot; editing Contacts alone does not update Calendar.
+Only contacts included in the chosen file are reconciled. Contacts omitted
+from a partial export are preserved. Deleting a contact and exporting the
+remaining contacts therefore does not remove its generated birthday. To remove
+one, clear its birthday and export it before deleting the contact, or delete
+that generated event manually and omit that contact from future exports.
+Use exports from the same restored Contacts store; stable UID fields identify
+people through name changes. Missing/duplicate UID or X-ABUID fields or malformed dates stop
+before any Calendar commands. Empty exports are rejected.
+
+The source must be UTF-8 vCard 3.0/4.0 with date-only birthdays. February 29
+recurs only in leap years. No age or birth year is displayed. The bridge writes
+its separate Contacts Birthdays calendar, not Calendar's native Birthdays.
+It does not create alarms explicitly; Calendar defaults may apply.
+Do not change generated descriptions: they identify bridge-owned events.
+
+The importer does not read the Contacts database or script Contacts. The named
+Birthday Bridge app sends only the Calendar scripts used for this import.
+Calendar changes are not atomic; preserve diagnostics if an operation fails.
+A local recovery journal may contain names. It is not included in the ZIP.
+The vCard itself is not included in diagnostics. Review logs before sharing.
+
+VALIDATION
+17 local parser/planning/guard/workflow tests passed. Calendar scripts compile
+on the build host. Calendar scripting on Mavericks remains unverified.
